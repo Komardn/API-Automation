@@ -1,0 +1,275 @@
+{
+  "stats": {
+    "suites": 5,
+    "tests": 6,
+    "passes": 6,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-02-15T08:53:55.468Z",
+    "end": "2025-02-15T08:53:57.497Z",
+    "duration": 2029,
+    "testsRegistered": 6,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "31133e31-cb42-4815-b5a6-c3fef6a60e49",
+      "title": "",
+      "fullFile": "",
+      "file": "",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "47d4c3cf-b742-4bb2-abc1-e012db757c6c",
+          "title": "DELETE REQRES",
+          "fullFile": "C:\\Digital Skola\\7. API Automation\\test\\deleteReqres.js",
+          "file": "\\test\\deleteReqres.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Delete user should be success",
+              "fullTitle": "DELETE REQRES Delete user should be success",
+              "timedOut": false,
+              "duration": 636,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const userId = 1;\nconst response = await fetch(\"https://reqres.in/api/users/1\", {\n    method: \"DELETE\",\n});\nassert.strictEqual(response.status, 204, \"Status harus 204 No Content\");\nconst dataResponse = await fetch(\"https://reqres.in/api/users/1\");\nassert.strictEqual(dataResponse.status, 200, \"Pengguna tidak ditemukan\");",
+              "err": {},
+              "uuid": "2645cbdf-9edc-4e10-a5a7-b9f63143c9e3",
+              "parentUUID": "47d4c3cf-b742-4bb2-abc1-e012db757c6c",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "2645cbdf-9edc-4e10-a5a7-b9f63143c9e3"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 636,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "69006048-907d-4671-a008-ecacd1a38cb8",
+          "title": "GET REQRES",
+          "fullFile": "C:\\Digital Skola\\7. API Automation\\test\\getReqres.js",
+          "file": "\\test\\getReqres.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Get user should be success",
+              "fullTitle": "GET REQRES Get user should be success",
+              "timedOut": false,
+              "duration": 42,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "this.timeout(10000);\nconst response = await fetch(\n    \"https://reqres.in/api/users/2\"\n);\nconst dataResponse = await response.json();\nassert.strictEqual(response.status, 200);\nassert.strictEqual(dataResponse.data.first_name, \"Janet\");\nconsole.log(\"response API : \" + JSON.stringify(dataResponse, null, 1));",
+              "err": {},
+              "uuid": "f75c676e-7568-478d-837e-0270c8127990",
+              "parentUUID": "69006048-907d-4671-a008-ecacd1a38cb8",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Get invalid user should be error",
+              "fullTitle": "GET REQRES Get invalid user should be error",
+              "timedOut": false,
+              "duration": 407,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "this.timeout(10000);\nconst response = await fetch(\n    \"https://reqres.in/api/users/40000\"\n);\nassert.strictEqual(response.status, 404);",
+              "err": {},
+              "uuid": "1d901ba9-bac1-4ea2-99c0-9e801a600ee3",
+              "parentUUID": "69006048-907d-4671-a008-ecacd1a38cb8",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "f75c676e-7568-478d-837e-0270c8127990",
+            "1d901ba9-bac1-4ea2-99c0-9e801a600ee3"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 449,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "3a7978c7-6bfa-4ca2-babd-aa80858f62cb",
+          "title": "VALIDATE JSON SCHEMA",
+          "fullFile": "C:\\Digital Skola\\7. API Automation\\test\\jsonSchema.js",
+          "file": "\\test\\jsonSchema.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Get user should be success",
+              "fullTitle": "VALIDATE JSON SCHEMA Get user should be success",
+              "timedOut": false,
+              "duration": 69,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "this.timeout(10000);\nconst response = await fetch(\n    \"https://reqres.in/api/users/2\"\n);\nconst data = await response.json();\nconst validate = ajv;\nconst valid = validate.validate(schema, data);\nif (!valid) {\n    console.log(validate.errors);\n}\nconsole.log(\"test: \" + JSON.stringify(data, null, 1));\nassert.ok(valid, \"Response JSON harus sesuai dengan schema\");",
+              "err": {},
+              "uuid": "20ebfbc9-3634-4e9e-83cd-2232af3059fc",
+              "parentUUID": "3a7978c7-6bfa-4ca2-babd-aa80858f62cb",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "20ebfbc9-3634-4e9e-83cd-2232af3059fc"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 69,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "eb1da643-bd01-4c62-b0c7-25eaf4d10d15",
+          "title": "PATCH REQRES",
+          "fullFile": "C:\\Digital Skola\\7. API Automation\\test\\patchReqres.js",
+          "file": "\\test\\patchReqres.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Update user should be success",
+              "fullTitle": "PATCH REQRES Update user should be success",
+              "timedOut": false,
+              "duration": 443,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "this.timeout(10000);\nconst userId = 3;\nconst url = \"https://reqres.in/api/users/3\";\nconst requestData = {\n    \"first_name\": \"Komar\",\n};\nconst response = await fetch(url, {\n    method: \"PATCH\",\n    headers: {\n        \"Content-Type\": \"application/json\",\n    },\n    body: JSON.stringify(requestData),\n});\nconst data = await response.json();\nconsole.log(\"response API : \" + JSON.stringify(data, null, 1));\nassert.strictEqual(response.status, 200, \"Status harus 200\");\nassert.strictEqual(data.first_name, \"Komar\");",
+              "err": {},
+              "uuid": "efd14a3e-2c60-4d6b-b85a-5909ee5e208c",
+              "parentUUID": "eb1da643-bd01-4c62-b0c7-25eaf4d10d15",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "efd14a3e-2c60-4d6b-b85a-5909ee5e208c"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 443,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "02f247b4-74a4-4deb-b6a3-f04ffda41595",
+          "title": "POST REQRES",
+          "fullFile": "C:\\Digital Skola\\7. API Automation\\test\\postReqres.js",
+          "file": "\\test\\postReqres.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Create user should be success",
+              "fullTitle": "POST REQRES Create user should be success",
+              "timedOut": false,
+              "duration": 417,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "this.timeout(10000);\nconst url = \"https://reqres.in/api/users\";\nconst requestData = {\n    \"id\": 7,\n    \"email\": \"Cristiano.Ronaldo@reqres.in\",\n    \"first_name\": \"Cristiano\",\n    \"last_name\": \"Ronaldo\",\n    \"avatar\": \"https://reqres.in/img/faces/7-image.jpg\"\n}\nconst response = await fetch(url, {\n    method: \"POST\",\n    headers: {\n        \"Content-Type\": \"application/json\",\n    },\n    body: JSON.stringify(requestData),\n});\nconst data = await response.json();\nconsole.log(\"response API : \" + JSON.stringify(data, null, 1));\nassert.strictEqual(response.status, 201, \"Status harus 201\");\nassert.strictEqual(data.email, \"Cristiano.Ronaldo@reqres.in\");\nassert.strictEqual(data.first_name, \"Cristiano\");\nassert.strictEqual(data.last_name, \"Ronaldo\");",
+              "err": {},
+              "uuid": "6f3e2b5c-2ade-4598-adc5-0df1dbb71795",
+              "parentUUID": "02f247b4-74a4-4deb-b6a3-f04ffda41595",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "6f3e2b5c-2ade-4598-adc5-0df1dbb71795"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 417,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "11.1.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.2.0"
+    }
+  }
+}
